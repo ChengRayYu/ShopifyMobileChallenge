@@ -7,12 +7,31 @@
 //
 
 import UIKit
+import Moya
+import RxSwift
+import RxCocoa
 
 class ViewController: UIViewController {
 
+    private let disposeBag = DisposeBag()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+
+        let service = MoyaProvider<ShopifyService>()
+
+        service.rx.request(.collections(page: 1))
+            .subscribe { (event) in
+
+                switch event {
+                case let .success(response):
+                    print(response)
+
+                case let .error(error):
+                    print(error)
+                }
+            }
+            .disposed(by: disposeBag)
     }
 
 
