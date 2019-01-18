@@ -1,23 +1,23 @@
 //
-//  ShopifyService.swift
+//  CollectionService.swift
 //  ShopifyMobileChallenge
 //
-//  Created by Ray on 2019/1/17.
+//  Created by Ray on 2019/1/18.
 //  Copyright © 2019 chengrayyu.com. All rights reserved.
 //
 
-import UIKit
+import Foundation
 import Moya
 
-enum ShopifyService {
+enum CollectionService {
     case collections(page: Int)
     case productList(ofCollection: Int, page: Int)
     case productDetail(ofIds: [Int], page: Int)
 }
 
-extension ShopifyService: TargetType {
+extension CollectionService: TargetType, ServiceBase {
 
-    var baseURL: URL { return URL(string: "https://shopicruit.myshopify.com")! }
+    var baseURL: URL { return URL(string: url)! }
     var headers: [String : String]? { return nil }
     var method: Moya.Method { return .get }
 
@@ -33,25 +33,16 @@ extension ShopifyService: TargetType {
     }
 
     var parameters: [String: Any] {
-        var params: [String: Any] = [:]
         switch self {
         case let .collections(page):
-            params = ["page": page]
+            return ["page": page, "access_token": token]
 
         case let .productList(collectionId, page):
-            params = ["collection_id": collectionId, "page": page]
+            return ["collection_id": collectionId, "page": page, "access_token": token]
 
         case let .productDetail(ids, page):
-            params = ["ids": ids, "page": page]
+            return ["ids": ids, "page": page, "access_token": token]
         }
-
-        /**
-         hard-coded token
-         supposed to retrieve from KeyChain or memory cache
-        */
-        params["access_token"] = "c32313df0d0ef512ca64d5b336a0d7c6"
-
-        return params
     }
 
     var parameterEncoding: ParameterEncoding {

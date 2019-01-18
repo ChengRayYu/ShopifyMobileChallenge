@@ -18,22 +18,12 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let service = MoyaProvider<ShopifyService>()
-
-        service.rx.request(.collections(page: 1))
-            .subscribe { (event) in
-
-                switch event {
-                case let .success(response):
-                    print(response)
-
-                case let .error(error):
-                    print(error)
-                }
-            }
+        ShopifyServices.findAllCollections()
+            .subscribe(onSuccess: { (response) in
+                print(response)
+            })
             .disposed(by: disposeBag)
+
     }
-
-
 }
 
