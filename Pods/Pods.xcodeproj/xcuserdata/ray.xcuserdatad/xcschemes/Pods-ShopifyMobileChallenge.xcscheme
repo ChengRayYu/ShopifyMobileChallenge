@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "65DB345DABCA817CDED8036E4E573AB0"
+               BlueprintIdentifier = "E901DB4F1C2C0083053F6F360144EAB3"
                BuildableName = "Pods_ShopifyMobileChallenge.framework"
                BlueprintName = "Pods-ShopifyMobileChallenge"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "65DB345DABCA817CDED8036E4E573AB0"
+            BlueprintIdentifier = "E901DB4F1C2C0083053F6F360144EAB3"
             BuildableName = "Pods_ShopifyMobileChallenge.framework"
             BlueprintName = "Pods-ShopifyMobileChallenge"
             ReferencedContainer = "container:Pods.xcodeproj">

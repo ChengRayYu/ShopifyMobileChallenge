@@ -9,6 +9,7 @@ target 'ShopifyMobileChallenge' do
     pod 'RxCocoa'
     pod 'Moya/RxSwift'
     pod 'RxDataSources'
+    pod 'Kingfisher'
 
     target 'ShopifyMobileChallengeTests' do
         inherit! :search_paths

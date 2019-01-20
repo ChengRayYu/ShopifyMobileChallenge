@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import RxDataSources
+import Kingfisher
 
 class CollectionListController: UIViewController {
 
@@ -20,6 +21,7 @@ class CollectionListController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        collectionTable.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
         rx()
     }
 }
@@ -30,7 +32,6 @@ extension CollectionListController {
 
     private func rx() {
 
-
         collectionTable.rx
             .setDelegate(self)
             .disposed(by: disposeBag)
@@ -39,11 +40,10 @@ extension CollectionListController {
         let tableDataSrc = RxTableViewSectionedReloadDataSource<SectionModel<String, CollectionListViewModel.CellType>>(configureCell: { [weak self] (dataSrc, table, indexPath, element) -> UITableViewCell in
 
             switch element {
-            case let .collection(id, title, imageUrl):
+            case let .collection(_ , title, imageUrl):
                 let cell = table.dequeueReusableCell(withIdentifier: "CollectionCell", for: indexPath) as! CollectionCell
                 cell.titleLbl.text = title ?? ""
-
-
+                cell.iconImgView.kf.setImage(with: URL(string: imageUrl ?? ""))
                 return cell
 
             case .empty:
@@ -79,8 +79,3 @@ extension CollectionListController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
-
-
-
-
-
