@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0930"
+   LastUpgradeVersion = "1010"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D5ECC9E10F6A4A8A4258BB98078D1015"
+               BlueprintIdentifier = "65DB345DABCA817CDED8036E4E573AB0"
                BuildableName = "Pods_ShopifyMobileChallenge.framework"
                BlueprintName = "Pods-ShopifyMobileChallenge"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D5ECC9E10F6A4A8A4258BB98078D1015"
+            BlueprintIdentifier = "65DB345DABCA817CDED8036E4E573AB0"
             BuildableName = "Pods_ShopifyMobileChallenge.framework"
             BlueprintName = "Pods-ShopifyMobileChallenge"
             ReferencedContainer = "container:Pods.xcodeproj">
