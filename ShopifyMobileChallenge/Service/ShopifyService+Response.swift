@@ -7,23 +7,11 @@
 //
 
 import Foundation
+import Moya
 
 extension ShopifyServices {
-
     enum Response<V> {
         case success(value: V)
-        case fail(err: Err)
-    }
-
-    enum Err: Error {
-        case serialization
-        case service(msg: String)
-
-        var description: String {
-            switch self {
-            case .serialization:        return "Serialization"
-            case .service(let msg):     return msg
-            }
-        }
+        case fail(err: Error)
     }
 }

@@ -12,7 +12,7 @@ import Moya
 enum CollectionService {
     case collections(page: Int)
     case productList(ofCollection: Int, page: Int)
-    case productDetail(ofIds: [Int], page: Int)
+    case productDetails(ofIds: [Int], page: Int)
 }
 
 extension CollectionService: TargetType, ServiceBase {
@@ -27,7 +27,7 @@ extension CollectionService: TargetType, ServiceBase {
             return "/admin/custom_collections.json"
         case .productList:
             return "/admin/collects.json"
-        case .productDetail:
+        case .productDetails:
             return "/admin/products.json"
         }
     }
@@ -40,8 +40,9 @@ extension CollectionService: TargetType, ServiceBase {
         case let .productList(collectionId, page):
             return ["collection_id": collectionId, "page": page, "access_token": token]
 
-        case let .productDetail(ids, page):
-            return ["ids": ids, "page": page, "access_token": token]
+        case let .productDetails(ids, page):
+            let idsStr = ids.map { "\($0)" }.joined(separator: ",")
+            return ["ids": idsStr, "page": page, "access_token": token]
         }
     }
 

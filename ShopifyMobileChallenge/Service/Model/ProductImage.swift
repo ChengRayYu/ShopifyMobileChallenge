@@ -8,10 +8,9 @@
 
 import Foundation
 
-struct ProductImage: Codable {
-
-    var id: Int
-    var width: Int
-    var height: Int
-    var src: String
+struct ProductImage: Decodable {
+    var id: Int?
+    var width: Int?
+    var height: Int?
+    var src: String?
 }

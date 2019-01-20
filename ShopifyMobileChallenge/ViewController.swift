@@ -17,13 +17,7 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        ShopifyServices.findAllCollections()
-            .subscribe(onSuccess: { (response) in
-                print(response)
-            })
-            .disposed(by: disposeBag)
-
+        
     }
 }
 

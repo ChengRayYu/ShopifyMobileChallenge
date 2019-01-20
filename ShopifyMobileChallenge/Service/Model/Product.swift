@@ -22,6 +22,6 @@ struct Product: Decodable {
         case body = "body_html"
         case type = "product_type"
         case updated = "updated_at"
-        case id, title, vendor
+        case id, title, vendor, variants, image
     }
 }
