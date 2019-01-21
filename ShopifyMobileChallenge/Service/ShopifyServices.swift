@@ -55,7 +55,7 @@ class ShopifyServices {
             .filterSuccessfulStatusCodes()
             .map({ (response) -> [Product] in
                 do {
-                    return try response.map([Product].self, atKeyPath: "", using: JSONDecoder(), failsOnEmptyData: false)
+                    return try response.map([Product].self, atKeyPath: "products", using: JSONDecoder(), failsOnEmptyData: false)
                 }
             })
             .map({ (details) -> Response<[Product]> in
