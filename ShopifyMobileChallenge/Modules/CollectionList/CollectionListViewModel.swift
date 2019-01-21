@@ -13,13 +13,13 @@ import RxCocoa
 
 class CollectionListViewModel {
 
-    enum CellType {
-        case collection(id: Int?, title: String?, imageUrl: String?)
+    enum CellModel {
+        case collection(id: Int, title: String, body: String, imageUrl: String)
         case empty
         case error(msg: String)
     }
 
-    private (set) var listDrv: Driver<[CellType]>
+    private (set) var listDrv: Driver<[CellModel]>
     private (set) var reloadSubject: PublishSubject<Void>
 
     init() {
@@ -27,15 +27,20 @@ class CollectionListViewModel {
         reloadSubject = PublishSubject<Void>()
 
         listDrv = reloadSubject.asDriver(onErrorJustReturn: ()).startWith(())
-            .flatMap({ _ -> Driver<[CellType]> in
+            .flatMap({ _ -> Driver<[CellModel]> in
                 return ShopifyServices.findAllCollections()
-                    .map({ (response) -> [CellType] in
+                    .map({ (response) -> [CellModel] in
                         switch response {
                         case .success(let value):
                             guard !value.isEmpty else {
                                 return [.empty]
                             }
-                            return value.map { .collection(id: $0.id, title: $0.title, imageUrl: $0.image?.src) }
+                            return value.map {
+                                .collection(id: $0.id ?? 0,
+                                            title: $0.title ?? "",
+                                            body: $0.body ?? "",
+                                            imageUrl: $0.image?.src ?? "")
+                            }
                         case .fail(let err):
                             return [.error(msg: err.localizedDescription)]
                         }
