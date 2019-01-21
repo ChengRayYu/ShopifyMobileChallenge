@@ -22,7 +22,11 @@ class ProductListController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         rx()
-    }    
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.isNavigationBarHidden = true
+    }
 }
 
 // MARK: - Private Functions
@@ -65,6 +69,22 @@ extension ProductListController {
 }
 
 extension ProductListController: UITableViewDelegate {
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = tableView.dequeueReusableCell(withIdentifier: "ProductHeader") as? ProductHeader
+        
+        header?.iconImgView.kf.setImage(with: URL(string: viewModel.currentCollectionImageUrl))
+        header?.titleLbl.text = viewModel.currentCollectionTite
+        header?.bodyLbl.text = viewModel.currentCollectionBody
+        header?.backBtn.rx.tap.asDriver()
+            .drive(onNext: { [weak self] _ in
+                self?.navigationController?.popViewController(animated: true)
+            })
+            .disposed(by: disposeBag)
+
+        return header
+    }
+
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)

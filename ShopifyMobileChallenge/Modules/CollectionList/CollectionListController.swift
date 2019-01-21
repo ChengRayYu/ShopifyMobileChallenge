@@ -25,6 +25,10 @@ class CollectionListController: UIViewController {
         navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
         rx()
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.isNavigationBarHidden = false
+    }
 }
 
 // MARK: - Private Functions
@@ -37,12 +41,11 @@ extension CollectionListController {
             .setDelegate(self)
             .disposed(by: disposeBag)
 
-
         let tableDataSrc = RxTableViewSectionedReloadDataSource<SectionModel<String, CollectionListViewModel.CellModel>>(
             configureCell: { [weak self] (dataSrc, table, indexPath, element) -> UITableViewCell in
 
                 switch element {
-                case let .collection(_ , title, imageUrl):
+                case let .collection(_ , title, _, imageUrl):
                     let cell = table.dequeueReusableCell(withIdentifier: "CollectionCell", for: indexPath) as! CollectionCell
                     cell.titleLbl.text = title
                     cell.iconImgView.kf.setImage(with: URL(string: imageUrl))
@@ -75,18 +78,21 @@ extension CollectionListController {
 
         collectionTable.rx.modelSelected(CollectionListViewModel.CellModel.self)
             .asObservable()
-            .map({ (model) -> Int? in
-                if case let .collection(id, _, _) = model {
-                    return id
+            .map({ (model) -> (id: Int, title: String, body: String, imageUrl: String)? in
+                if case let .collection(id, title, body, image) = model {
+                    return (id, title, body, image)
                 }
                 return nil
             })
             .skipWhile { $0 == nil }
-            .subscribe(onNext: { [weak self] (identifier) in
+            .subscribe(onNext: { [weak self] (collectionInfo) in
                 let productListVC = UIStoryboard(name: "Products", bundle: Bundle.main)
                     .instantiateViewController(withIdentifier: "ProductListController") as? ProductListController
-                guard let productList = productListVC, let id = identifier else { return }
-                productList.viewModel = ProductListViewModel(withCollectionId: id)
+                guard let productList = productListVC, let info = collectionInfo else { return }
+                productList.viewModel = ProductListViewModel(withCollectionId: info.id,
+                                                             title: info.title,
+                                                             body: info.body,
+                                                             imageUrl: info.imageUrl)
                 self?.navigationController?.pushViewController(productList, animated: true)
             })
             .disposed(by: disposeBag)

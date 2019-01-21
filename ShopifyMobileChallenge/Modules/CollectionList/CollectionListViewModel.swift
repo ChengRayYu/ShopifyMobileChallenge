@@ -14,7 +14,7 @@ import RxCocoa
 class CollectionListViewModel {
 
     enum CellModel {
-        case collection(id: Int, title: String, imageUrl: String)
+        case collection(id: Int, title: String, body: String, imageUrl: String)
         case empty
         case error(msg: String)
     }
@@ -38,6 +38,7 @@ class CollectionListViewModel {
                             return value.map {
                                 .collection(id: $0.id ?? 0,
                                             title: $0.title ?? "",
+                                            body: $0.body ?? "",
                                             imageUrl: $0.image?.src ?? "")
                             }
                         case .fail(let err):

@@ -20,7 +20,15 @@ class ProductListViewModel {
     private (set) var productsDrv: Driver<[CellModel]>
     private (set) var reloadSubject: PublishSubject<Void>
 
-    init(withCollectionId collectionId: Int) {
+    private (set) var currentCollectionTite: String
+    private (set) var currentCollectionBody: String
+    private (set) var currentCollectionImageUrl: String
+
+    init(withCollectionId collectionId: Int, title: String, body: String, imageUrl: String) {
+
+        currentCollectionTite = title
+        currentCollectionBody = body
+        currentCollectionImageUrl = imageUrl
 
         reloadSubject = PublishSubject<Void>()
 

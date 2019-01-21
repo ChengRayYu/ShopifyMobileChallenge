@@ -9,6 +9,14 @@
 import UIKit
 import RxSwift
 
+class ProductHeader: UITableViewCell {
+    @IBOutlet weak var bgView: UIView!
+    @IBOutlet weak var backBtn: UIButton!
+    @IBOutlet weak var iconImgView: UIImageView!
+    @IBOutlet weak var titleLbl: UILabel!
+    @IBOutlet weak var bodyLbl: UILabel!
+}
+
 class ProductCell: UITableViewCell {
     @IBOutlet weak var bgView: UIView!
     @IBOutlet weak var iconImgView: UIImageView!
