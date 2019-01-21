@@ -66,6 +66,7 @@
 		7128FDEA21F0C9930003115B /* ShopifyMobileChallengeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShopifyMobileChallengeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7128FDEE21F0C9930003115B /* ShopifyMobileChallengeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopifyMobileChallengeTests.swift; sourceTree = "<group>"; };
 		7128FDF021F0C9930003115B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7137FE7E21F5904000C17B9E /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		7141EB0521F13D9400AFA387 /* ShopifyServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopifyServices.swift; sourceTree = "<group>"; };
 		7141EB0821F14D9300AFA387 /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		7141EB0A21F1561900AFA387 /* CollectionImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionImage.swift; sourceTree = "<group>"; };
@@ -151,6 +152,7 @@
 		7128FDCD21F0C9910003115B = {
 			isa = PBXGroup;
 			children = (
+				7137FE7E21F5904000C17B9E /* README.md */,
 				7128FDD821F0C9910003115B /* ShopifyMobileChallenge */,
 				7128FDED21F0C9930003115B /* ShopifyMobileChallengeTests */,
 				7128FDD721F0C9910003115B /* Products */,

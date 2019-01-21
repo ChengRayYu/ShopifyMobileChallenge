@@ -15,6 +15,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+
+        UINavigationBar.appearance().titleTextAttributes = [.font: UIFont(name: "Avenir-Heavy", size: 17.0)!]
+        UINavigationBar.appearance().largeTitleTextAttributes = [.font: UIFont(name: "Avenir-Heavy", size: 34.0)!]
+
         return true
     }
 
